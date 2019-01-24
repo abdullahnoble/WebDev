@@ -1,0 +1,48 @@
+
+<html lang="en">
+
+
+
+
+<head>
+<title>{% block title %}Wpg Login{% endblock %}</title>
+  {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{%  static 'style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/IIT_Guwahati_Logo.svg/220px-IIT_Guwahati_Logo.svg.png"/>
+</head>
+<body>
+    <div class="loginbox">
+    {% load staticfiles %}
+    <img src="{% static 'avatar.png' %}" class="avatar" alt="">
+        <h1>Login Here</h1>
+      {% if form.errors %}
+    <p style="color: red">Your username and password didn't match. Please try again.</p>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {% for error in field.errors %}
+          <p class="error" style="color: red">{{ error }}</p>
+        {% endfor %}
+        {% if field.help_text %}
+          <p><small style="color: grey">{{ field.help_text }}</small></p>
+        {% endif %}
+      </p>
+    {% endfor %}
+  <input type="submit" name="" value="Login">
+  </form>
+            <a href="{% url 'mysite:signup' %}">Don't have an account? </a><br>
+         <a href="{% url 'mysite:signup' %}"><input type="submit" name="" value="Signup"></a>
+
+    </div>
+<div class="copy">
+    <p> Copyright &copy; 2019
+        Designed by YM<p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'mysite/base.html' %}
+
+<head>
+    <title>
+        {%  block title %}  PROFILE  {% endblock %}
+    </title>
+</head>
+{% block body %}
+<a href="{% url 'mysite:add_profile' %}" class="top-menu"><span class="glyphicon glyphicon-plus">bbb</span></a>
+{% block content %}
+{% endblock %}
+
+{% endblock %}
